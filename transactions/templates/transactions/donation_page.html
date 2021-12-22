@@ -1,0 +1,115 @@
+{% load static %}
+{% include 'accounts/main.html' %}
+
+{% block content %}
+<div class="row">
+	<div class="col">
+		<div class="pl-3 pt-3" style="text-align: center;"><h3>{{donation_request.title}}</h3></div>
+		<img class="pl-3 pt-3" src="{% static 'images/' %}{{donation_request.request_image}}" 
+		height="50%" width="100%" />
+		<div style="padding-top: 25px; padding-left: 25px;">
+			<div><h5>{{donation_request.user}}</h5></div>
+			<div>{{donation_request.description}}</div>
+		</div>
+
+		<div class="bg-light p-3" id="donation-updates">
+			<div style="text-align: center;">
+				<h2 style="color: #2CA4B0; font-family: 'Lobster', cursive; font-size: 36px; font-weight: normal; line-height: 48px;">Updates</h2>
+			</div>
+			{% for update in updates %}
+			<div class="updatebox">
+				<div class="update-body">
+				<span class="tip tip-up"></span>
+				<div class="update">
+					<span>{{update}}</span>
+				</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+
+		{% if current_user == donation_user %}
+		<div class="p-5" >
+			<div class="form-group">
+				<form action="" method="POST">
+					{% csrf_token %}
+					<div style="width: 300px; height: 120px">
+						<label for="update-add">
+							<div style="text-align: center;">
+								<h4 style="color: #2CA4B0; font-family: 'Lobster', cursive; font-size: 36px; 
+								font-weight: normal; line-height: 48px;">Add Updates : </h4>
+							</div>
+						</label>
+						<input id="update-add" name="update-add" type="text" class="form-control" />
+					</div>
+					<input type="submit" name="submit" />
+				</form>
+			</div>
+		</div>
+		{% endif %}
+	</div>
+	<div class="col-4 bg-light p-3 ml-2" style="height: 400px;" id="donation-box">
+		<form action="" method="POST">
+			{% csrf_token %}
+			<div class="form-group" style="padding: 20px">
+				<div style="width: 100%; height: 90px">
+					<label for="amount">Amount : </label>
+					<input id="amount" name="amount" type="text" class="form-control">
+				</div>
+				<div style="width: 100%; height: 90px">
+					<label for="amount">Note : </label>
+					<input id="note" name="note" type="text" class="form-control">
+				</div>
+				<input class="btn btn-success" style="width: 100%; height: 40px" type="submit" name="submit">
+			</div>
+		</form>
+		<div class="progress" style="height: 3px; width: 100%; margin: 0px auto 10px auto;">
+			{% for value in progress_bar_widths %}
+			<div class="progress-bar bg-success" style="width:{{ value }}%"></div>
+			{% endfor %}
+		</div>
+		<div style="display: inline-block; width: 100%;">
+			<span style="float: left;">{{donation_request.amount_received}}</span>
+			<span style="float: right;">{{donation_request.goal}}</span>
+		</div>
+	</div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+
+{% endblock %}
+
+<!--
+	<div style="padding-left: 25px;">
+		<div class="update-container">
+			<h3>Updates : </h3>
+			{% for update in updates %}
+			<div class="updatebox">
+				<div class="update-body">
+				<span class="tip tip-up"></span>
+				<div class="update">
+					<span>{{update}}</span>
+				</div>
+				</div>
+			<br />
+			{% endfor %}
+			</div>
+		</div>
+			{% if current_user == donation_user %}
+			<div class="form-group">
+				<form action="" method="POST">
+					{% csrf_token %}
+					<div style="width: 300px; height: 90px">
+						<label for="update-add"><b>Add Update : </b></label>
+						<input id="update-add" name="update-add" type="text" class="form-control" />
+					</div>
+					<input type="submit" name="submit" />
+				</form>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+	-->

@@ -1,0 +1,218 @@
+body{
+	background-color: #e7f0fd;
+}
+
+/* Dashboard */
+
+#your-donations-header {
+	font-family: 'Dancing Script', cursive;
+	font-size: 80px;
+	text-align: center;
+}
+
+#dashboard-body {
+	background: url('http://www.autodatz.com/wp-content/uploads/2017/05/Old-Car-Wallpapers-Hd-36-with-Old-Car-Wallpapers-Hd.jpg');
+	width: 100%;
+	height: auto;
+	background-size: cover;
+	background-attachment: fixed;
+	position: relative;
+	overflow: hidden;
+  border-radius: 0 0 85% 85% / 30%;
+  width: 100%;
+	height: 100%;
+	padding: 50px;
+	text-shadow: 1px 1px 1px #333;
+  background-image: linear-gradient( 135deg, #9f05ff69 10%, #fd5e086b 100%);
+}
+
+.button:hover {
+	background-color: black;
+	color: white;
+}
+
+.dashboard-card {
+	border-radius: 10px;
+	box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+#profile-img {
+	border-radius: 50%;
+}
+
+/* Dashboard Table */
+
+.donation-table-container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 35px;
+  padding-top: 20px;
+  width: 100%;
+}
+  
+.responsive-table li {
+  border-radius: 3px;
+  padding: 25px 30px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+.responsive-table .table-header {
+  background-color: #95A5A6;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.responsive-table .table-row {
+background-color: #ffffff;
+box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+}
+.responsive-table .col-1 {
+flex-basis: 10%;
+}
+.responsive-table .col-2 {
+flex-basis: 40%;
+}
+.responsive-table .col-3 {
+flex-basis: 25%;
+}
+.responsive-table .col-4 {
+flex-basis: 25%;
+}
+
+table, th, td {
+	border: 1px solid black;
+	padding: 2px;
+}
+
+table { 
+	border-spacing: 10px;
+	border-collapse: separate;
+}
+
+/* Donation Request Cards */
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: inherit;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+.donation-request-card-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+	font-family: "Roboto", sans-serif;
+	color: #10182f;
+}
+
+.donation-request-container {
+  display: flex;
+  width: 1040px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.donation-request-card {
+  margin: 10px 10px 10px 150px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 300px;
+}
+.donation-request-card-header img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.donation-request-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  min-height: 250px;
+}
+
+.donation-request-card-body p {
+  font-size: 13px;
+  margin: 0 0 40px;
+}
+
+#donation-box {
+  margin: 30px 60px;
+  position: sticky;
+}
+
+#add-donation-button {
+  position: fixed; 
+  bottom: 80px; 
+  right: 100px; 
+  height: 80px; 
+  line-height: 120px;  
+  width: 80px; 
+  font-size:40px;
+  font-weight:bold; 
+  border-radius: 50%; 
+  background-color: #4CAF50;
+  color: white; 
+  text-align: center; 
+  cursor: pointer;
+}
+
+#add-donation-button:hover {
+  box-shadow: 0 0 15px grey;
+}
+
+/* Updates Box */
+
+#donation-updates {
+  margin-left: 3%;
+  margin-top: 3%;
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.tip {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  background: transparent;
+  border: 10px solid #ccc;
+}
+
+.tip-up {
+  top: -25px; /* Same as body margin top + border */
+  left: 10px;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+
+.updatebox .update-body {
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  padding: 5px;
+  background-color: #DADADA;
+  border-radius: 3px;
+  border: 5px solid #ccc;
+}
+
+.update-body .update {
+  min-height: 30px;
+  border-radius: 3px;
+  font-family: Arial;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #797979;
+}

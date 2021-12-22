@@ -1,0 +1,50 @@
+{% load static %}
+{% include 'accounts/main.html' %}
+
+{% block content %}
+
+<h3 style="text-align: center;">{{profile}}'s Request History</h3>
+<h5 style="text-align: center;">(Active at the top, unactive in grey)</h5>
+
+<div class="donation-request-card-container">
+	<div class="row">
+		{% for donation in donation_requests %}
+		{% if donation.status == 'active' %}
+		<a href="{% url 'transactions:donation-page' donation.id %}" style="text-decoration: none;">
+		{% endif %}
+			{% if donation.status == 'active' %}
+			<div class="donation-request-card">
+			{% else %}
+			<div class="donation-request-card" style="background-color: gray;">
+			{% endif %}
+				<div class="donation-request-card-header">
+					<img class="card-img-top" src="{% static 'images/' %}{{donation.request_image}}">
+				</div>
+				<div class="donation-request-card-body">
+					<h4 style="text-align: center;">
+						{{donation.title}}
+					</h4>
+					<p>
+						{{donation.short_description}}
+					</p>
+					<div class="progress" style="height: 3px; width: 100%; margin: 0px auto 10px auto;">
+						<div class="progress-bar bg-success" style="width:{{ progress_bar_width }}%"></div>
+					</div>
+					<div>
+						<span>
+							<small>{{donation.amount_received}}</small>
+						</span>
+						<span style="margin-left: 190px;">
+							<small>{{donation.goal}}</small>
+						</span>
+					</div>
+				</div>
+			</div>
+		</a>
+		{% if forloop.counter0|divisibleby:2 and not forloop.first %}<div class="w-100">Hey</div>{% endif %}
+		{% endfor %}
+	</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register Page</title>
+	<style type="text/css">
+		body {
+			background-color: #87CEFA;
+		}
+		.main_box {
+			height: 400px;
+			width: 500px;
+			background-color: #40E0D0;
+			margin: auto;
+			margin-top: 100px;
+			padding-top: 40px;
+			text-align: center;
+			border-style: solid;
+			border-color: gray;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div class='main_box'>
+		<h1>Register</h1>
+		<form method="POST" action="">
+			{% csrf_token %}
+			{{form.username.label}}
+			<br>
+			{{form.username}}
+			<br>
+			<br>
+			{{form.email.label}}
+			<br>
+			{{form.email}}
+			<br>
+			<br>
+			{{form.password1.label}}
+			<br>
+			{{form.password1}}
+			<br>
+			<br>
+			{{form.password2.label}}
+			<br>
+			{{form.password2}}
+			<br>
+			<input type="submit" name="Create User">
+		</form>
+	</div>
+</body>
+</html>

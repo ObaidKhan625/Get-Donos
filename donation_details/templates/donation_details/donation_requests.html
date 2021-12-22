@@ -1,0 +1,97 @@
+{% load static %}
+{% include 'accounts/main.html' %}
+
+{% block content %}
+
+<div class="donation-request-card-container">
+	<div class="row">
+		{% for donation, progress_bar_width in donation_requests %}
+		<a href="{% url 'transactions:donation-page' donation.id %}" style="text-decoration: none;">
+			<div class="donation-request-card">
+				<div class="donation-request-card-header">
+					<img class="card-img-top" src="{% static 'images/' %}{{donation.request_image}}">
+				</div>
+				<div class="donation-request-card-body">
+					<h4 style="text-align: center;">
+						{{donation.title}}
+					</h4>
+					<p>
+						{{donation.short_description}}
+					</p>
+					<div class="progress" style="height: 3px; width: 100%; margin: 0px auto 10px auto;">
+						<div class="progress-bar bg-success" style="width:{{ progress_bar_width }}%"></div>
+					</div>
+					<div>
+						<span>
+							<small>{{donation.amount_received}}</small>
+						</span>
+						<span style="margin-left: 190px;">
+							<small>{{donation.goal}}</small>
+						</span>
+					</div>
+				</div>
+			</div>
+		</a>
+		{% if forloop.counter0|divisibleby:3 and not forloop.first %}<div class="w-100">Hey</div>{% endif %}
+		{% endfor %}
+	</div>
+</div>
+
+<a href = "{% url 'donation_details:create-donation-request' user.id %}">
+<button id="add-donation-button"><h1>+</h1></button>
+</a>
+
+{% endblock %}
+
+<!--
+	{% for i, j in donation_row_break %}
+		{{i}}, {{j.count}}
+		Hey
+		<br>
+		{% endfor %}
+-->
+
+<!--
+	<div class="donation-request-card">
+	<div class="donation-request-card-header">
+	<img class="card-img-top" src="{% static 'images/' %}{{donation.request_image}}">
+	</div>
+	<div class="donation-request-card-body">
+	<span class="tag tag-purple">Popular</span>
+	<h4>
+	How to Keep Going When You Don’t Know What’s Next
+	</h4>
+	<p>
+	The future can be scary, but there are ways to
+	deal with that fear.
+	</p>
+	<div class="user">
+	<img src="https://lh3.googleusercontent.com/ogw/ADGmqu8sn9zF15pW59JIYiLgx3PQ3EyZLFp5Zqao906l=s32-c-mo" alt="user" />
+	<div class="user-info">
+	<h5>Eyup Ucmaz</h5>
+	<small>Yesterday</small>
+	</div>
+	</div>
+	</div>
+	</div>
+	<div class="donation-request-card">
+	<div class="donation-request-card-header">
+	<img class="card-img-top" src="{% static 'images/' %}{{donation.request_image}}">
+	</div>
+	<div class="donation-request-card-body">
+	<span class="tag tag-pink">Design</span>
+	<h4>
+	10 Rules of Dashboard Design
+	</h4>
+	<p>
+	Dashboard Design Guidelines
+	</p>
+	<div class="user">
+	<img src="https://studyinbaltics.ee/wp-content/uploads/2020/03/3799Ffxy.jpg" alt="user" />
+	<div class="user-info">
+	<h5>Carrie Brewer</h5>
+	<small>1w ago</small>
+	</div>
+	</div>
+	</div>
+-->
