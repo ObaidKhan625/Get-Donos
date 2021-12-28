@@ -7,7 +7,7 @@
 	<div class="row">
 		{% for donation, progress_bar_width in donation_requests %}
 		<a href="{% url 'transactions:donation-page' donation.id %}" style="text-decoration: none;">
-			<div class="donation-request-card">
+			<div class="donation-request-card m-5">
 				<div class="donation-request-card-header">
 					<img class="card-img-top" src="{% static 'images/' %}{{donation.request_image}}">
 				</div>
@@ -32,7 +32,6 @@
 				</div>
 			</div>
 		</a>
-		{% if forloop.counter0|divisibleby:3 and not forloop.first %}<div class="w-100">Hey</div>{% endif %}
 		{% endfor %}
 	</div>
 </div>

@@ -4,7 +4,7 @@
 {% block content %}
 <div class="row">
 	<div class="col">
-		<div class="pl-3 pt-3" style="text-align: center;"><h3>{{donation_request.title}}</h3></div>
+		<div class="pl-3 pt-3" style="text-align: center;" id="donation-page-title"><h3>{{donation_request.title}}</h3></div>
 		<img class="pl-3 pt-3" src="{% static 'images/' %}{{donation_request.request_image}}" 
 		height="50%" width="100%" />
 		<div style="padding-top: 25px; padding-left: 25px;">
@@ -72,6 +72,8 @@
 			<span style="float: left;">{{donation_request.amount_received}}</span>
 			<span style="float: right;">{{donation_request.goal}}</span>
 		</div>
+		<h6 style="text-align: center;">Maximum allowed limit is 25,000</h6>
+	<h6 style="text-align: center;">Invalid inputs will be redirected</h6>
 	</div>
 </div>
 <br />

@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'accounts.User'
+
 SECRET_KEY = 'HHHHHHHHHH'
 
 # Application definition

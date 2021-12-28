@@ -8,12 +8,12 @@
 			<div class="row">
 				<div class="col">
 					<div class="card-body bg-light text-dark dashboard-card ml-4">
-						<h5>User : {{profile.user_name}}</h5>
+						<h5>User : {{user.username}}</h5>
 						<hr>
 						<h5>Contact me through : </h5>
-						<b>Phone : {{profile.phone}}</b><br>
+						<b>Phone : {{user.user_phone}}</b><br>
 						<b>Email : {{profile.email}}</b><br>
-						<b>Other : {{profile.other}}</b><br>
+						<b>Other : {{profile.user_other}}</b><br>
 					</div>
 				</div>
 				<div class="col">
@@ -52,7 +52,7 @@
 				<div class="col col-4">Payment Status</div>
 			</li>
 			{% for donation in all_donations %}
-			{% if donation.from_user.user == request.user %}
+			{% if donation.from_user == request.user %}
 			<li class="table-row" style="border: 3px solid #00ff99">
 			{% else %}
 			<li class="table-row" style="border: 3px solid #21e40e;">

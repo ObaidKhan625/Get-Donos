@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from accounts.models import Customer
+from accounts.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .forms import CreateUserForm
@@ -8,7 +8,6 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import auth_or_not
-from django.contrib.auth.models import Group
 
 # Create your views here.
 
@@ -21,10 +20,7 @@ def registerPage(request):
 			user = form.save()
 			user_name = form.cleaned_data.get('username')
 
-			group = Group.objects.get(name='user')
-			user.groups.add(group)
 			messages.success(request, 'Account was created for ' + user_name)
-			customer = Customer.objects.create(user = user, user_name = user.get_username())
 
 			return redirect('user-auth:login')
 	context = {'form':form}

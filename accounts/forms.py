@@ -1,7 +1,7 @@
 from django.forms import ModelForm
-from .models import Customer
+from .models import User
 
 class ProfileUpdationForm(ModelForm):
 	class Meta:
-		model = Customer
-		fields = ['user_name', 'phone', 'email', 'other', 'profile_image']
+		model = User
+		fields = ['username', 'user_phone', 'email', 'user_other', 'user_profile_image']
