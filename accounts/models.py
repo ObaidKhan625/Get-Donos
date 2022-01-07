@@ -7,6 +7,7 @@ import random
 # Create your models here.
 
 class User(AbstractUser):
+	id =  					 		models.AutoField(primary_key=True)
 	user_phone = 					models.CharField(max_length=200, unique=True, null=True, blank=True)
 	user_other = 					models.CharField(max_length=200, null=True, blank=True)
 	user_profile_image = 			models.ImageField(null=True, upload_to='profiles', blank=True, default='profiles/default-image.jpg')
@@ -20,6 +21,7 @@ class Donation_Request(models.Model):
 		('PayPal', 'PayPal'),
 		('Paytm', 'Paytm'),
 		)
+	id =  					 	models.AutoField(primary_key=True)
 	title = 					models.CharField(max_length=1000, null=True)
 	user = 						models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name = 'user_donation_request')
 	goal = 						models.PositiveIntegerField(null=True)
@@ -34,6 +36,7 @@ class Donation_Request(models.Model):
 		return self.title
 
 class Donation_made(models.Model):
+	id =  					 	models.AutoField(primary_key=True)
 	from_user = 				models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='from_user_donations_made')
 	to_user = 					models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='to_user_donations_made')
 	donation_request = 			models.ForeignKey(Donation_Request, on_delete = models.SET_NULL, null = True, related_name = 'donation_request_donations_made')
