@@ -1,13 +1,13 @@
-from django.shortcuts import render, redirect
-from accounts.models import User
-from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
-from .forms import CreateUserForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
+from .forms import CreateUserForm
 from .decorators import auth_or_not
+from accounts.models import User
 
 # Create your views here.
 

@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import sys
+from decouple import config
 #from .secret_key import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,13 +26,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['get-donos.herokuapp.com', 'localhost', '127.0.0.1']
 
 AUTH_USER_MODEL = 'accounts.User'
 
-SECRET_KEY = 'HHHHHHHHHH'
+SECRET_KEY = config('SECRET_KEY')
 
 # Application definition
 
@@ -50,6 +52,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -126,6 +129,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/images/'
@@ -136,5 +143,5 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
-razorpay_id = "rzp_test_WuxxelFjqQsxTs"
-razorpay_account_id = "yJ03eASyJ49NztNKESGbmeiD"
+razorpay_id = config('razorpay_id')
+razorpay_account_id = config('razorpay_account_id')

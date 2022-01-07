@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from user_auth.decorators import auth_or_not
-from accounts.models import *
 from .forms import DonationRequestForm
+from accounts.models import *
+from user_auth.decorators import auth_or_not
 from PIL import Image
 import random
 
 # Create your views here.
 
+#Helper Functions
 def deleteIncompleteDonations(user):
 	donation_requests = []
 	incomplete_donations = Donation_made.objects.filter(status = 'Incomplete')
@@ -18,6 +19,9 @@ def deleteIncompleteDonations(user):
 	Donation_made.objects.filter(status = 'Incomplete').delete()
 
 def exploreDonationRequests(request):
+	"""
+	All Requests
+	"""
 	deleteIncompleteDonations(request.user)
 	donation_requests = Donation_Request.objects.filter(status='active')
 	progress_bar_widths = []
@@ -26,17 +30,26 @@ def exploreDonationRequests(request):
 		progress_bar_widths.append((i.amount_received/i.goal)*100)
 	
 	donation_requests = zip(donation_requests, progress_bar_widths)
+
 	context = {'donation_requests':donation_requests}
 	return render(request, 'donation_details/donation_requests.html', context)
 
 @login_required(login_url='user-auth:login')
 @auth_or_not(1)
 def requestHistory(request, pk):
+	"""
+	Personal Request History
+	"""
+	if(pk =='None'):
+		return redirect('/')
 	user = User.objects.get(id = pk)
+
 	deleteIncompleteDonations(user)
+
 	donation_requests = Donation_Request.objects.filter(user = user)
 	total_donation_requests = donation_requests.count()
 	donation_requests = reversed(donation_requests)
+
 	context = {'user':user, 'donation_requests':donation_requests, 
 	'total_donation_requests':total_donation_requests}
 	return render(request, 'donation_details/request_history.html', context)
@@ -44,6 +57,9 @@ def requestHistory(request, pk):
 @login_required(login_url='user-auth:login')
 @auth_or_not(1)
 def createDonationRequest(request, pk):
+	"""
+	Create new Dono
+	"""
 	if request.method == "POST":
 		form = DonationRequestForm(request.POST, request.FILES)
 		if form.is_valid():
@@ -57,5 +73,6 @@ def createDonationRequest(request, pk):
 	else:
 		Donation_Request.objects.filter(user = request.user, status='active').update(status = 'closed')
 		form = DonationRequestForm()
+		
 		context = {'form':form}
 		return render(request, 'donation_details/create_donation_request_page.html', context)
